@@ -1,0 +1,12 @@
+{
+  "name": "ats-resume-builder",
+  "version": "1.0.0",
+  "description": "AI-powered ATS resume builder using React, Node.js, and Claude",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm run dev"
+  }
+}
