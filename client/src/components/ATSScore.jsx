@@ -1,5 +1,36 @@
 import { useEffect, useState } from 'react';
-import { TrendingUp, CheckCircle, XCircle, Lightbulb, AlertTriangle } from 'lucide-react';
+import { TrendingUp, CheckCircle, XCircle, Lightbulb, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+
+function KeywordList({ keywords, color, bg }) {
+  const [expanded, setExpanded] = useState(false);
+  const preview = 12;
+  const shown = expanded ? keywords : keywords.slice(0, preview);
+  const hasMore = keywords.length > preview;
+
+  return (
+    <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+        {shown.map((kw) => (
+          <span key={kw} style={{ background: bg, color, padding: '1px 6px', borderRadius: 4, fontSize: 10, fontWeight: 500 }}>{kw}</span>
+        ))}
+      </div>
+      {hasMore && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 2, marginTop: 5,
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontSize: 10, color: '#6b7280', fontWeight: 600, padding: 0,
+          }}
+        >
+          {expanded
+            ? <><ChevronUp size={11} /> Show less</>
+            : <><ChevronDown size={11} /> +{keywords.length - preview} more</>}
+        </button>
+      )}
+    </div>
+  );
+}
 
 const ScoreCircle = ({ score }) => {
   const [animated, setAnimated] = useState(0);
@@ -109,24 +140,14 @@ export default function ATSScore({ data }) {
             <CheckCircle size={13} color="#16a34a" />
             <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a' }}>MATCHED ({matchedKeywords.length})</span>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-            {matchedKeywords.slice(0, 12).map((kw) => (
-              <span key={kw} style={{ background: '#f0fdf4', color: '#15803d', padding: '1px 6px', borderRadius: 4, fontSize: 10, fontWeight: 500 }}>{kw}</span>
-            ))}
-            {matchedKeywords.length > 12 && <span style={{ fontSize: 10, color: '#9ca3af' }}>+{matchedKeywords.length - 12} more</span>}
-          </div>
+          <KeywordList keywords={matchedKeywords} color="#15803d" bg="#f0fdf4" />
         </div>
         <div className="card" style={{ padding: '10px 12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 6 }}>
             <XCircle size={13} color="#dc2626" />
             <span style={{ fontSize: 11, fontWeight: 700, color: '#dc2626' }}>MISSING ({missingKeywords.length})</span>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-            {missingKeywords.slice(0, 12).map((kw) => (
-              <span key={kw} style={{ background: '#fef2f2', color: '#b91c1c', padding: '1px 6px', borderRadius: 4, fontSize: 10, fontWeight: 500 }}>{kw}</span>
-            ))}
-            {missingKeywords.length > 12 && <span style={{ fontSize: 10, color: '#9ca3af' }}>+{missingKeywords.length - 12} more</span>}
-          </div>
+          <KeywordList keywords={missingKeywords} color="#b91c1c" bg="#fef2f2" />
         </div>
       </div>
 
