@@ -192,3 +192,8 @@ The score shown in the app is a **content match score** — it measures keyword 
 - Download as PDF using **print-to-PDF** (browser dialog → Save as PDF)
 - Avoid image-based PDFs (scanned documents)
 - Make sure all relevant skills from the JD appear in your **Skills** section
+
+
+
+
+<img width="1366" height="644" alt="image" src="https://github.com/user-attachments/assets/a6e1ddad-b2c8-4808-a3cb-7af591e897f1" />
