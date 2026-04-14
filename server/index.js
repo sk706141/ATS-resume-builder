@@ -77,7 +77,7 @@ async function aiText(prompt) {
     return msg.content[0].text;
   }
 
-  throw new Error('No AI provider available. Add GROQ_API_KEY to server/.env (free at console.groq.com).');
+  throw new Error('No AI provider available. Add GROQ_API_KEY to server/.env (free at console.groq.com) or reach out to Shubham.');
 }
 
 // ─── PDF text extractor + AI (Groq → Gemini → Claude) ────────────────────────
@@ -381,4 +381,4 @@ function extractJDKeywords(jd) {
   return { keywords, freq };
 }
 
-app.listen(PORT, () => console.log(`\nResume Builder Server running on port ${PORT}\n`));
+app.listen(PORT, () => console.log(`\nResume Builder Server running on port ${PORT}, published by Shubham\n`));
